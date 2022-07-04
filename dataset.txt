@@ -1,0 +1,16 @@
+method_type (UPI Card Bank COD)
+method (Collect Intent Debit Credit NB Cash)
+upi_type (Phonepe Paytm AmazonPay GooglePay .)
+card_type (Visa MasterCard Maestro Rupay .)
+country (India USA)
+
+
+
+(if (== [method_type] UPI)(== [country] India))
+(if (== [card_type] Rupay)(== [country] India))
+(if (== [method_type] UPI)(or (== [method] Collect)(== [method] Intent)))
+(if (== [method_type] Card)(or (== [method] Credit)(== [method] Debit)))
+(if (== [method_type] COD)(== [method] Cash))
+(if (not (== [method_type] Card))(== [card_type] .))
+(if (not (== [method_type] UPI))(== [upi_type] .))
+(if (== [method_type] Bank)(== [method] NB))
